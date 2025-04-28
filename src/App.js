@@ -1,52 +1,69 @@
-import React from "react";
-import { Image } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-const app = ({src,sizes}) => {
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+const Buttoncontrol = () => {
+  const [updatedname, inputName] = useState("");
+  const [updaterollno, inputrollno] = useState("");
+  const [updatephnum, inputphnum] = useState("");
+  const [updatedadd, inputadd] = useState("");
+
+  const HandleTheForm = (event) => {
+    event.preventDefault();
+    console.log(updatedname);
+    console.log(updaterollno);
+    console.log(updatephnum);
+    console.log(updatedadd);
+  };
   return (
     <>
-     <Container>
-      <Row>
-        <Col>
-      <Imagetesting //parent into child using properties changes
-        user={{
-          imageLink:
-            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dXJsfGVufDB8fDB8fHww",
-          height: 400,
-          size: 200,
-        }}
-      />
-      <Test 
-      src={src}
-      height={sizes}
-      width={sizes}
-      />
-      </Col>
-      </Row>
-    </Container>
+      <Form onSubmit={HandleTheForm}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="Text"
+            placeholder="Enter Name"
+            onChange={(event) => {
+              inputName(event.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Roll number</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter Roll number"
+            onChange={(event) => {
+              inputrollno(event.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Phone number</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter Phone number"
+            onChange={(event) => {
+              inputphnum(event.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Address</Form.Label>
+          <Form.Control
+            type="Text"
+            placeholder="Enter Address"
+            onChange={(event) => {
+              inputadd(event.target.value);
+            }}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </>
   );
 };
-export default app;
-function Imagetesting({ user }) {
-  return (
-    <>
-      <Image src={user.imageLink} height={user.height} width={user.width} />
-      <p>parent to child</p>
-    </>
-  );
-  
-}
-function Test(){
-  return(
-    <>
-  <Image  
-  sizes={250}
-  src={"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dXJsfGVufDB8fDB8fHww"}
-  />
-  <>child to parent</>
-  </>
-  )
-}
-
+export default Buttoncontrol;
