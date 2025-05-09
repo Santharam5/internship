@@ -1,47 +1,41 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+// import React from "react";
+// import { BrowserRouter, Route, Routes } from "react-router";
+// import Contact from "./webpage/contact_page";
+// const App=()=>{
+//   <>
+//   return(
+// <BrowserRouter>
+// <link to="/contact">
+// <ul>
+// <li>
+// Contact Page
+// </li></ul>
+// </link>
+// <Routes>
+//   <Route path="/contact" element={<Contact/>} />
+// </Routes>
+// </BrowserRouter>)</>
+// }
+// export default App;
+import React from "react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Contact from "./webpage/contact_page";
 
-const Buttoncontrol = () => {
-  const [updatedvalue, setUpdatevalue] = useState({inputName:"",inputRollno:""});
- 
-
-  const HandleTheForm = (event) => {
-    event.preventDefault();
-    const {inputName,inputRollno}=updatedvalue
-    console.log(inputName);
-    console.log(inputRollno);
-  };
+const App = () => {
   return (
-    <>
-      <Form onSubmit={HandleTheForm}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="Text"
-            placeholder="Enter Name"
-            value={updatedvalue.inputName}
-            onChange={(event) => {
-              setUpdatevalue({...updatedvalue,inputName:event.target.value})
-            }}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Roll number</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter Roll number"
-            value={updatedvalue.inputRollno}
-            onChange={(event) => {
-              setUpdatevalue({...updatedvalue,inputRollno:event.target.value})
-            }}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </>
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/contact">Contact Page</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/contact" element={<Contact/>} />
+      </Routes>
+    </BrowserRouter>
   );
 };
-export default Buttoncontrol;
+
+export default App;
